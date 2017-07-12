@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Students from './form-components/StudentRows';
 
 export default class Table extends Component {
 
@@ -16,6 +17,7 @@ export default class Table extends Component {
                     </tr>
                   </thead>
                   <tbody>
+                    <Students studentArr={this.props.studentArr} />
                   </tbody>
                 </table>
               </div>

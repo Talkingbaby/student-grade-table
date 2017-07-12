@@ -9,7 +9,7 @@ export default class StudentCourseInput extends Component {
                 <span className="glyphicon glyphicon-list-alt"></span>
             </span>
             <input type="text" className="form-control" name="course" id="course"
-                placeholder="Student Course" value={this.props.coursevalue} onChange={this.props.onchange} />
+                placeholder="Student Course" value={this.props.course} onChange={this.props.onchange} />
         </div>
     );
   }

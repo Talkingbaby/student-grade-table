@@ -2,35 +2,49 @@ import React, { Component } from 'react';
 import Form from './Form';
 import Table from './Table';
 
-const studentArr = [];
+const studentArr = [{name: 'kyle', course: 'cooking', grade: 89}];
 
 export default class Display extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-          courseValue: '', 
+          student: {
+            name: '',
+            course: '',
+            grade: undefined,
+          } 
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangeCourse = this.handleChangeCourse.bind(this);
+        this.handleChangeGrade = this.handleChangeGrade.bind(this);
     }
     
 
     handleSubmit(event) {
         event.preventDefault();
-        let student = {
-          course: this.state.courseValue
-        };
-        studentArr.push(student);
+        studentArr.push(this.state.student);
         console.log('pushed!');
         console.log(studentArr);
     }
 
-    handleChange(event) {
-        this.setState({ courseValue: event.target.value });
-        console.log(event.target.value);
-        console.log('state: ', this.state.courseValue);
-    }
+    handleChangeName(event) {
+        this.setState({ student: {name: event.target.value}});
+         console.log('state: ', this.state.student.name);
+    };
+
+      handleChangeCourse(event) {
+        this.setState({ student: {course: event.target.value}});
+        console.log('state: ', this.state.student.course);
+      };
+
+      handleChangeGrade(event) {
+        this.setState({ student: {grade: event.target.value}});
+        console.log('state: ', this.state.student.grade);
+      };
+        
+
 
   render() {
     //   var name = null;
@@ -45,8 +59,13 @@ export default class Display extends Component {
 
     return (
       <div>
-        <Form onclick={this.handleSubmit} onchange={this.handleChange} coursevalue={this.state.courseValue}/>
-        <Table student={studentArr} />
+        <Form onclick={this.handleSubmit} 
+              onchangeName={this.handleChangeName} 
+              onchangeCourse={this.handleChangeCourse} 
+              onchangeGrade={this.handleChangeGrade} 
+              student={this.state.student}
+        />
+        <Table studentArr={studentArr} />
       </div>
     );
   }

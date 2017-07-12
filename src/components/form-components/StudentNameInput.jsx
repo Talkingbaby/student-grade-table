@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
 
 export default class StudentNameInput extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: '' };
-
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(event) {
-        this.setState({ value: event.target.value });
-    }
 
   render() {
     return (
@@ -18,7 +8,7 @@ export default class StudentNameInput extends Component {
             <span className="input-group-addon">
                 <span className="glyphicon glyphicon-user"></span>
             </span>
-            <input type="text" className="form-control" name="studentName" id="studentName" placeholder="Student Name" value={this.state.value} onChange={this.handleChange}/>
+            <input type="text" className="form-control" name="studentName" id="studentName" placeholder="Student Name" value={this.props.name} onChange={this.props.onchange}/>
         </div>
     );
   }
