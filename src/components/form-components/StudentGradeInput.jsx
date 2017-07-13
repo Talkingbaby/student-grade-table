@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class StudentCourseInput extends Component {
-
-  render() {
+function StudentGradeInput (props) {
     return (
         <div className="input-group form-group">
             <span className="input-group-addon">
@@ -14,10 +12,11 @@ export default class StudentCourseInput extends Component {
                 name="studentGrade"
                 id="studentGrade"
                 placeholder="Student Grade"
-                value={this.props.grade}
-                onChange={this.props.onchange}
+                value={props.grade}
+                onChange={props.onchange}
             />
         </div>
     );
-  }
-}
+};
+
+module.exports = StudentGradeInput;

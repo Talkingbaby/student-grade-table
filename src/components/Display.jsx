@@ -3,15 +3,13 @@ import Form from './Form';
 import Table from './Table';
 import fire from '../fire';
 
-const studentArr = [{name: 'kyle', course: 'cooking', grade: 89}];
-
 export default class Display extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             name: '',
             course: '',
-            grade: null,
+            grade: ''
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -60,7 +58,7 @@ export default class Display extends Component {
               course={this.state.course}
               grade={this.state.grade}
         />
-        <Table studentArr={studentArr} />
+        <Table />
       </div>
     );
   }

@@ -1,7 +1,64 @@
 import React, { Component } from 'react';
-import StudentNameInput from './form-components/StudentNameInput';
-import StudentCourseInput from './form-components/StudentCourseInput';
-import StudentGradeInput from './form-components/StudentGradeInput';
+// import StudentNameInput from './form-components/StudentNameInput';
+// import StudentCourseInput from './form-components/StudentCourseInput';
+// import StudentGradeInput from './form-components/StudentGradeInput';
+
+function StudentNameInput (props) {
+    return (
+        <div className="input-group form-group">
+            <span className="input-group-addon">
+                <span className="glyphicon glyphicon-user"></span>
+            </span>
+            <input 
+                type="text"
+                className="form-control"
+                name="studentName"
+                id="studentName"
+                placeholder="Student Name"
+                value={props.name}
+                onChange={props.onchange}
+            />
+        </div>
+    );
+};
+
+function StudentCourseInput (props) {
+    return (
+        <div className="input-group form-group">
+            <span className="input-group-addon">
+                <span className="glyphicon glyphicon-list-alt"></span>
+            </span>
+            <input
+                type="text"
+                className="form-control"
+                name="course"
+                id="course"
+                placeholder="Student Course"
+                value={props.course}
+                onChange={props.onchange}
+            />
+        </div>
+    );
+};
+
+function StudentGradeInput (props) {
+    return (
+        <div className="input-group form-group">
+            <span className="input-group-addon">
+                <span className="glyphicon glyphicon-education"></span>
+            </span>
+            <input
+                type="text"
+                className="form-control"
+                name="studentGrade"
+                id="studentGrade"
+                placeholder="Student Grade"
+                value={props.grade}
+                onChange={props.onchange}
+            />
+        </div>
+    );
+};
 
 export default class Form extends Component {
     render() {
