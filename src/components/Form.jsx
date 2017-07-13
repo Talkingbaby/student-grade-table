@@ -9,9 +9,9 @@ export default class Form extends Component {
             <div className="student-add-form form-group col-sm-3 col-sm-push-9 col-md-3 col-md-push-9 col-sm-3 col-sm-push-9 col-lg-3 col-lg-push-9">
                 <form role="form" className="form-group">
                     <h4>Add Student</h4>
-                    <StudentNameInput onchange={this.props.onchangeName} name={this.props.student.name} />
-                    <StudentCourseInput onchange={this.props.onchangeCourse} course={this.props.student.course}/>
-                    <StudentGradeInput onchange={this.props.onchangeGrade} grade={this.props.student.grade}/>
+                    <StudentNameInput onchange={this.props.onchangeName} name={this.props.name} />
+                    <StudentCourseInput onchange={this.props.onchangeCourse} course={this.props.course}/>
+                    <StudentGradeInput onchange={this.props.onchangeGrade} grade={this.props.grade}/>
                     <div className="form-group">
                         <button type="button" className="btn btn-success" onClick={this.props.onclick}>Add</button>
                         <button type="button" className="btn btn-default" onClick="cancelClicked()">Cancel</button>

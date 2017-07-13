@@ -8,7 +8,15 @@ export default class StudentNameInput extends Component {
             <span className="input-group-addon">
                 <span className="glyphicon glyphicon-user"></span>
             </span>
-            <input type="text" className="form-control" name="studentName" id="studentName" placeholder="Student Name" value={this.props.name} onChange={this.props.onchange}/>
+            <input 
+                type="text"
+                className="form-control"
+                name="studentName"
+                id="studentName"
+                placeholder="Student Name"
+                value={this.props.name}
+                onChange={this.props.onchange}
+            />
         </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from './Form';
 import Table from './Table';
+import fire from '../fire';
 
 const studentArr = [{name: 'kyle', course: 'cooking', grade: 89}];
 
@@ -8,11 +9,9 @@ export default class Display extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-          student: {
             name: '',
             course: '',
-            grade: undefined,
-          } 
+            grade: null,
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,49 +20,45 @@ export default class Display extends Component {
         this.handleChangeGrade = this.handleChangeGrade.bind(this);
     }
     
-
     handleSubmit(event) {
-        event.preventDefault();
-        studentArr.push(this.state.student);
-        console.log('pushed!');
-        console.log(studentArr);
+      event.preventDefault(); // <- prevent form submit from reloading the page
+      /* Send the message to Firebase */
+      fire.database().ref('students').push({
+        name: this.state.name,
+        course: this.state.course,
+        grade: this.state.grade
+      });
+      this.setState({
+          name: '',
+          course: '',
+          grade: ''
+      });
     }
 
     handleChangeName(event) {
-        this.setState({ student: {name: event.target.value}});
-         console.log('state: ', this.state.student.name);
+        this.setState({name: event.target.value});
     };
 
       handleChangeCourse(event) {
-        this.setState({ student: {course: event.target.value}});
-        console.log('state: ', this.state.student.course);
+        this.setState({course: event.target.value});
       };
 
       handleChangeGrade(event) {
-        this.setState({ student: {grade: event.target.value}});
-        console.log('state: ', this.state.student.grade);
+        this.setState({grade: event.target.value});
       };
         
 
 
   render() {
-    //   var name = null;
-    //   var course = null;
-    //   var grade = null;
-    //   //Variable for the new student object:
-    //   var newStudent = null;
-    //   //Variable to store average grade:
-    //   var averageGrade = null;
-    //   //Variable for student object position in the student array:
-    //   var index = null;
-
     return (
       <div>
         <Form onclick={this.handleSubmit} 
               onchangeName={this.handleChangeName} 
               onchangeCourse={this.handleChangeCourse} 
               onchangeGrade={this.handleChangeGrade} 
-              student={this.state.student}
+              name={this.state.name}
+              course={this.state.course}
+              grade={this.state.grade}
         />
         <Table studentArr={studentArr} />
       </div>
