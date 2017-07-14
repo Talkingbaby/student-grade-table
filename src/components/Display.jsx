@@ -13,19 +13,29 @@ export default class Display extends Component {
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeCourse = this.handleChangeCourse.bind(this);
         this.handleChangeGrade = this.handleChangeGrade.bind(this);
     }
     
     handleSubmit(event) {
-      event.preventDefault(); // <- prevent form submit from reloading the page
+      event.preventDefault();
       /* Send the message to Firebase */
       fire.database().ref('students').push({
         name: this.state.name,
         course: this.state.course,
         grade: this.state.grade
       });
+      this.setState({
+          name: '',
+          course: '',
+          grade: ''
+      });
+    }
+
+    handleCancel(event) {
+      event.preventDefault();
       this.setState({
           name: '',
           course: '',
@@ -50,7 +60,9 @@ export default class Display extends Component {
   render() {
     return (
       <div>
-        <Form onclick={this.handleSubmit} 
+        <Form 
+              handleSubmit={this.handleSubmit} 
+              handleCancel={this.handleCancel}
               onchangeName={this.handleChangeName} 
               onchangeCourse={this.handleChangeCourse} 
               onchangeGrade={this.handleChangeGrade} 

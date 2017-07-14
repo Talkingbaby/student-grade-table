@@ -70,8 +70,8 @@ export default class Form extends Component {
                     <StudentCourseInput onchange={this.props.onchangeCourse} course={this.props.course}/>
                     <StudentGradeInput onchange={this.props.onchangeGrade} grade={this.props.grade}/>
                     <div className="form-group">
-                        <button type="button" className="btn btn-success" onClick={this.props.onclick}>Add</button>
-                        <button type="button" className="btn btn-default" onClick="cancelClicked()">Cancel</button>
+                        <button type="button" className="btn btn-success" onClick={this.props.handleSubmit}>Add</button>
+                        <button type="button" className="btn btn-default" onClick={this.props.handleCancel}>Cancel</button>
                     </div>
                 </form>
             </div>
