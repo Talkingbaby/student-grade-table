@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-// import StudentNameInput from './form-components/StudentNameInput';
-// import StudentCourseInput from './form-components/StudentCourseInput';
-// import StudentGradeInput from './form-components/StudentGradeInput';
+import PropTypes from 'prop-types';
 
 function StudentNameInput (props) {
     return (
@@ -20,6 +18,10 @@ function StudentNameInput (props) {
             />
         </div>
     );
+};
+
+StudentNameInput.propTypes = {
+    name: PropTypes.string.isRequired
 };
 
 function StudentCourseInput (props) {
@@ -41,6 +43,10 @@ function StudentCourseInput (props) {
     );
 };
 
+StudentCourseInput.propTypes = {
+    course: PropTypes.string.isRequired
+};
+
 function StudentGradeInput (props) {
     return (
         <div className="input-group form-group">
@@ -48,7 +54,7 @@ function StudentGradeInput (props) {
                 <span className="glyphicon glyphicon-education"></span>
             </span>
             <input
-                type="text"
+                type="number"
                 className="form-control"
                 name="studentGrade"
                 id="studentGrade"
