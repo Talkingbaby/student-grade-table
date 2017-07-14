@@ -5,25 +5,41 @@ export default class Table extends Component {
   constructor(props) {
     super(props);
     this.state = { students: [] }; // <- set up react state
+
+    this.handleDelete = this.handleDelete.bind(this);
   }
   componentWillMount() {
     /* Create reference to messages in Firebase Database */
     let studentsRef = fire.database().ref('students').orderByKey().limitToLast(100);
-    studentsRef.on('child_added', snapshot => {
-      /* Update React state when message is added at Firebase Database */
-      let students = snapshot.val();
-      this.setState({ students: [students].concat(this.state.students)});
-      console.log('students state: ', this.state.students);
-      console.log('students: ', this.state.students[0]);
+
+    studentsRef.on('value', snapshot => {
+      var students = [];
+      snapshot.forEach(function(childSnapshot) {
+        var student = childSnapshot.val();
+        student['.key'] = childSnapshot.key;
+        students.push(student);
+      });
+
+      this.setState({
+        students: students
+      });
     })
+  }
 
+  componentWillUnmount() {
+    this.firebaseRef.off();
+  }
+  
 
-    // /* Create reference to messages in Firebase Database */
-    // let messagesRef = fire.database().ref('messages').orderByKey().limitToLast(100);
-    // messagesRef.on('child_added', snapshot => {
+  handleDelete(key) {
+    let studentsRef = fire.database().ref('students');
+    studentsRef.child(key).remove();
+
+    // studentsRef.on('value', snapshot => {
     //   /* Update React state when message is added at Firebase Database */
-    //   let message = { text: snapshot.val(), id: snapshot.key };
-    //   this.setState({ messages: [message].concat(this.state.messages) });
+    //   let students = snapshot.val();
+    //   this.setState({ students: [students].concat(this.state.students)});
+    //   console.log('students state after delete: ', this.state.students);
     // })
   }
 
@@ -43,11 +59,11 @@ export default class Table extends Component {
                   { /* Render the list of messages */
                     this.state.students.map((student) => {
                       return (
-                        <tr>
+                        <tr key={student['.key']}>
                           <td>{student.name}</td>
                           <td>{student.course}</td>
                           <td>{student.grade}</td>
-                          <td>{student.id}</td>
+                          <td><button type="button" className="btn btn-danger" onClick={this.handleDelete.bind(null, student['.key'])}>Danger</button></td>
                         </tr>
                       );
                     })

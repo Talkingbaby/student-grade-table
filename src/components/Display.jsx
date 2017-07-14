@@ -25,7 +25,7 @@ export default class Display extends Component {
       fire.database().ref('students').push({
         name: this.state.name,
         course: this.state.course,
-        grade: this.state.grade
+        grade: this.state.grade,
       });
       this.setState({
           name: '',
