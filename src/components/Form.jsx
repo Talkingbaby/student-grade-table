@@ -73,9 +73,6 @@ export default class Form extends Component {
                         <button type="button" className="btn btn-success" onClick={this.props.onclick}>Add</button>
                         <button type="button" className="btn btn-default" onClick="cancelClicked()">Cancel</button>
                     </div>
-                    <div className="form-group">
-                        <button type="button" className="btn btn-warning" onClick="getDataFromServer()">Get Data From Server</button>
-                    </div>
                 </form>
             </div>
         )
