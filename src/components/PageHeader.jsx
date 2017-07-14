@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 export default class PageHeader extends Component {
     render() {
-        // console.log('return avg func: ', this.props.average);
         return (
             <div className="page-header">
                 {/*<!-- only show this element when the isnt on mobile -->*/}
